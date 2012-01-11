@@ -75,6 +75,8 @@ trait Templates {
     <html>
       <head>
         <title>sbin</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta> 
+        <link href="http://cdn.submarinerich.com/images/favicon.png" rel="icon" type="image/png"></link> 
         <style type="text/css">
           { """
             * { margin:0; padding:0; }
