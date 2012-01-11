@@ -2,12 +2,6 @@
 
 A minimal scala pastebin backed by redis
 
-## install
-
-with sbt
-
-    > sbt
-    update
 
 ## usage
 
@@ -21,10 +15,16 @@ Start your redis server
 
 Run with defaults
 
-    > sbt
-    run
+    rake run
   
-Will start server at http://localhost:8080 with default login/password "admin"/"admin"
+
+
+---
+
+**Note** This is legacy stuff I haven't enabled in the current build scripts - _candersonmiller_
+
+
+Will start server at http://localhost:8079 with default login/password "admin"/"admin"
 
 Run with provided username and password
 
