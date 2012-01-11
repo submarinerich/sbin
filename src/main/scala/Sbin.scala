@@ -22,7 +22,7 @@ class App extends Config with Hashing with Persistence with Templates with unfil
 }
 
 trait Config {
-  def ttl = 60 * 60 * 24
+  def ttl = 60 * 60 * 2
   def listSize = 10
 }
 
@@ -67,7 +67,7 @@ trait Templates {
       <h2>pasting.</h2>
       <p>one button</p>
       <h2>brief.</h2>
-      <p>pastings life for one day</p>
+      <p>pastings live for two hours</p>
     </div>
   )
   
@@ -127,7 +127,12 @@ trait Persistence { self: Config =>
     import com.redis._
     private val redis = new RedisClient("localhost", 6379)
     def apply(k: String, v: String): Boolean = {
-      redis.set(k, v) && redis.expire(k, ttl) && redis.lpush("recent", k)
+    	var successfullyPushed = false
+      redis.lpush("recent", k) match {
+        case Some( i: Int ) => successfullyPushed = i == 1
+        case _ =>{}
+      }
+      redis.set(k, v) && redis.expire(k, ttl) && successfullyPushed
     }
     def apply(k: String): Option[String] = redis.get(k)
     def list(k: String, start: Int, end: Int): Option[List[Option[String]]] = redis.lrange(k, start, end) 
