@@ -17,6 +17,10 @@ class App extends Config with Hashing with Persistence with Templates with unfil
     case GET(Path(Seg(key :: Nil), _)) => db(key) match {
       case Some(value) => snip(key, value)
       case _ =>  NotFound
+    }
+    case GET(Path(Seg(key :: "plain" :: Nil), _)) => db(key) match {
+      case Some(value) => plain(key, value)
+      case _ =>  NotFound
     } 
   }
 }
@@ -56,7 +60,8 @@ trait Templates {
       <pre><code>{ value.trim }</code></pre>
     </div>
   )
-  
+
+  def plain( key : String, value : String ) = ResponseString( value.trim )
   
   lazy val readme = layout(
     <span>readme</span>)(
