@@ -1,4 +1,4 @@
-PRODUCTION_WAR="sbin-0.0.2.war"
+PRODUCTION_WAR="sbin-0.0.3.war"
 CONNECTION="sbinConnection"
 PORT="8079"
 
