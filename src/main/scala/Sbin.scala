@@ -13,6 +13,13 @@ class App extends Config with Hashing with Persistence with Templates with unfil
       }
       case _ => Redirect("/")
     } 
+    case POST(Path("/clpost", Params(params, _))) => params("body") match {
+        case Seq(body) => hash(body.toString) { key =>
+          db(key, body.toString)
+          ResponseString(key.toString+"\r\n")
+        }
+        case _ => ResponseString("error")
+      }
     case GET(Path("/readme", _)) => readme
     case GET(Path(Seg(key :: Nil), _)) => db(key) match {
       case Some(value) => snip(key, value)

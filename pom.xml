@@ -6,7 +6,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>me.lessis</groupId>
   <artifactId>sbin</artifactId>
-  <version>0.0.2</version>
+  <version>0.0.3</version>
   <packaging>war</packaging>
   <name>Sbin</name>
   <inceptionYear>2011</inceptionYear>
